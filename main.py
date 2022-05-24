@@ -12,36 +12,37 @@ class Window:
         self.root = tk.Tk()
         self.root.geometry('900x300')
         self.root.title('My program')
-        self.files = []
+        self.images = []
         self.tree = ttk.Treeview(self.root)
         
 
     def choose_file(self):
         try:
-            filename = askopenfilename()
-            if filename in self.files:
+            image = askopenfilename()
+            if [image] == [()]:
+                return
+            if image in self.images:
                 raise RecursionError()
-            self.files.append(filename)
+            self.images.append(image)
             self.refrash_tree()
         except RecursionError:
-            messagebox.showerror('Repetition Error', 'You can select file only once')
+            messagebox.showerror('Repetition Error', 'You can select images only once')
 
 
     def save(self):
         try:
             option = self.varF2.get()
             messagebox.showinfo('OK!', 'OK!')
-            change_contrast(img_pathes=self.files, option=option)
-            print(self.files)
+            change_contrast(img_pathes=self.images, option=option)
             self.clear()
         except ChoiceError:
-            messagebox.showerror('Choice Error', 'Make choice!')
+            messagebox.showerror('Choice Error', 'Choose images')
 
 
     def refrash_tree(self):
         for row in self.tree.get_children():
             self.tree.delete(row)
-        for row in self.files:
+        for row in self.images:
             self.tree.insert(parent='', index='end', iid=row,text='', values=(row,), tag='orow')
         self.tree.tag_configure('orow', background='#EEEEEE', font=('Arial', 12))
         self.tree.grid(row=0, column=4, columnspan=5, rowspan=11, padx=10, pady=20)
@@ -50,7 +51,7 @@ class Window:
     def clear(self):
         for row in self.tree.get_children():
             self.tree.delete(row)
-        self.files.clear()
+        self.images.clear()
 
 
     def delete(self):
@@ -58,16 +59,16 @@ class Window:
         try:
             row = self.tree.selection()[0]
             self.tree.delete(row)
-            self.files.remove(row)
+            self.images.remove(row)
 
 
         except IndexError:
-            messagebox.showerror('Error', 'Select file for delete')
+            messagebox.showerror('Error', 'Select image for delete')
 
 
     def main_loop(self):
 
-        button_choose = Button(self.root, text='Choose file', command=self.choose_file)
+        button_choose = Button(self.root, text='Choose image', command=self.choose_file)
         button_choose.grid(row=0, column=0)
 
         button_save = Button(self.root, text='Run', command=self.save)
@@ -86,10 +87,10 @@ class Window:
         sideF2 = OptionMenu(self.root, self.varF2, *sidesF2)        
         sideF2.grid(row=2, column=0, columnspan=1, padx=25, pady=5)
 
-        self.tree['columns'] = ('dir',)
+        self.tree['columns'] = ('image dir',)
         self.tree.column('#0', width=0, stretch=NO)
-        self.tree.column('dir', anchor=W, width=600)
-        self.tree.heading("dir", text="dir", anchor=W)
+        self.tree.column('image dir', anchor=W, width=600)
+        self.tree.heading("image dir", text="image dir", anchor=W)
         self.refrash_tree()
         self.root.mainloop()
 

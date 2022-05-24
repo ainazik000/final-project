@@ -13,6 +13,8 @@ def make_bw(img_pathes):
 
 
 def change_contrast(img_pathes, option, level=100):
+    if img_pathes == []:
+        raise ChoiceError()
     if option == 'Contrast':
         for img_path in img_pathes:
             img = Image.open(img_path)
