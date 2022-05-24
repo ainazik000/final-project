@@ -3,8 +3,7 @@
 Python version above 3.10 required
 To run the program, use the python3 main.py command
 
-Программа конвертирует излбраженеи в черно белое, или контрастное
-Для работы программы необходимо выбрать изображения(одно или несколько)
+The program converts images to black and white or contrast For the program to work, you must select images (one or more)
 There is a button for clearing selected files, a button for deleting a file (from the table for merging)
 
 
