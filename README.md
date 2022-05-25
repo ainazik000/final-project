@@ -11,9 +11,17 @@ Exceptions:
 
 Deletion error - occurs when no item is selected to delete.
 
+![select](https://user-images.githubusercontent.com/102587633/170176026-f22cd316-6ab9-4185-96ef-85a4186aa600.png)
+
+
 Recursion error: occurs when trying to select the same file more than 1 time
 
+![Screenshot_2022-05-25_09-51-47](https://user-images.githubusercontent.com/102587633/170176164-ae48bc5c-f843-4cc3-accc-60ffad8a3475.png)
+
+
 Choice error: occurs when option or file are not selected
+
+![Screenshot_2022-05-25_09-46-08](https://user-images.githubusercontent.com/102587633/170176194-676d7557-1cdb-43f8-a1bd-de78ae637211.png)
 
 
 Results:
